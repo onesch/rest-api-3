@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     "rest_framework",
+    "app.users.apps.UsersConfig",
 ]
 
 MIDDLEWARE = [
@@ -117,6 +118,7 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
+
 # Rest API
 
 REST_FRAMEWORK = {
@@ -126,3 +128,8 @@ REST_FRAMEWORK = {
         "rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly"
     ]
 }
+
+
+# App User model
+
+AUTH_USER_MODEL = 'users.User'
