@@ -35,5 +35,5 @@ class OrderItem(models.Model):
     price_at_purchase = models.IntegerField(null=True)
 
     @property
-    def total_price_at_purchase(self):
+    def total_price(self):
         return self.price_at_purchase * self.count
