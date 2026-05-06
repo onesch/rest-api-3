@@ -32,7 +32,7 @@ class OrderItem(models.Model):
         on_delete=models.CASCADE,
     )
     count = models.PositiveIntegerField(default=1)
-    price_at_purchase = models.IntegerField()
+    price_at_purchase = models.IntegerField(null=True)
 
     @property
     def total_price_at_purchase(self):
