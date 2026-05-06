@@ -7,7 +7,7 @@ from app.users.models import User
 class Order(models.Model):
     date = models.DateTimeField(auto_now=True)
 
-    products = models.ManyToManyField(
+    order_items = models.ManyToManyField(
         Product,
         through='OrderItem',
         related_name='orders',
