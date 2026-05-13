@@ -25,17 +25,17 @@ class Order(models.Model):
 class OrderItem(models.Model):
     product = models.ForeignKey(
         Product,
-        on_delete=models.CASCADE,
+        on_delete=models.PROTECT,
     )
     count = models.PositiveIntegerField(default=1)
-    price_at_purchase = models.IntegerField(null=True)
+    price_at_purchase = models.IntegerField()
 
     order = models.ForeignKey(
-            Order,
-            null=True,
-            on_delete=models.PROTECT,
-            related_name='items',
-        )
+        Order,
+        null=False,
+        on_delete=models.CASCADE,
+        related_name='items',
+    )
 
     @property
     def total_price(self):
