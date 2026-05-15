@@ -29,13 +29,17 @@ class OrderSerializer(serializers.ModelSerializer):
         queryset=User.objects.all(),
         source='user',
     )
+    date = serializers.DateTimeField(
+        format="%d.%m.%Y-%H:%M"
+    )
 
     class Meta:
         model = Order
         fields = [
-            "user_email", "items", "total_price",
+            "user_email", "items", "total_price", "date"
         ]
 
+    # ORM adapter
     def create(self, validated_data: dict):
         items_data = validated_data.pop('items')
 
@@ -52,3 +56,15 @@ class OrderSerializer(serializers.ModelSerializer):
             )
 
         return order
+
+
+class GetUserOrdersSerializer(serializers.Serializer):
+    user_id = serializers.IntegerField()
+
+    date_start = serializers.DateTimeField(
+        input_formats=["%d.%m.%Y-%H:%M"]
+    )
+
+    date_finish = serializers.DateTimeField(
+        input_formats=["%d.%m.%Y-%H:%M"]
+    )
